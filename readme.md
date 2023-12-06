@@ -1,0 +1,1 @@
+![alt text](https://github.com/JashanB/Social-Site/blob/master/db_diagram.png)
