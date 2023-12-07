@@ -5,5 +5,6 @@ CREATE TABLE users (
   email VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
   dob DATE NOT NULL,
-  userName VARCHAR(255) NOT NULL
+  userName VARCHAR(255) NOT NULL,
+  createdAt DATE NOT NULL DEFAULT(GETDATE())
 );
