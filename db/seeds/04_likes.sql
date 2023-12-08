@@ -1,9 +1,5 @@
-DROP TABLE IF EXISTS likes CASCADE;
-
-CREATE TABLE likes (
-  id SERIAL PRIMARY KEY NOT NULL,
-  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  post_id INTEGER REFERENCES posts(id) ON DELETE CASCADE,
-  FOREIGN KEY (user_id) REFERENCES users(id),
-  FOREIGN KEY (post_id) REFERENCES posts(id)
-);
+insert into likes (user_id, post_id) values (1, 1);
+insert into likes (user_id, post_id) values (2, 1);
+insert into likes (user_id, post_id) values (3, 1);
+insert into likes (user_id, post_id) values (3, 4);
+insert into likes (user_id, post_id) values (4, 4);
