@@ -1,11 +1,5 @@
-DROP TABLE IF EXISTS posts CASCADE;
-
-CREATE TABLE posts (
-  id SERIAL PRIMARY KEY NOT NULL,
-  title VARCHAR(500) NOT NULL,
-  content VARCHAR(8000),
-  createdAt DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  img VARCHAR(255),
-  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  FOREIGN KEY (user_id) REFERENCES users(id)
-);
+insert into posts (title, content, img, user_id) values ('Check out my new bag!', 'blank', 'cool_image.png', 1);
+insert into posts (title, content, img, user_id) values ('Check out my new toy!', 'cool right', 'cool_image.png', 2);
+insert into posts (title, content, img, user_id) values ('Check out my new scarf!', 'blank', 'cool_image.png', 3);
+insert into posts (title, content, img, user_id) values ('Check out my new shirt!', 'thrifted', 'cool_image.png', 4);
+insert into posts (title, content, img, user_id) values ('Check out my new mug!', 'Yay', 'cool_image.png', 5);
