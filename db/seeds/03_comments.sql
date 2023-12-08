@@ -1,11 +1,5 @@
-DROP TABLE IF EXISTS comments CASCADE;
-
-CREATE TABLE comments (
-  id SERIAL PRIMARY KEY NOT NULL,
-  content VARCHAR(8000),
-  createdAt DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  post_id INTEGER REFERENCES posts(id) ON DELETE CASCADE,
-  FOREIGN KEY (user_id) REFERENCES users(id),
-  FOREIGN KEY (post_id) REFERENCES posts(id)
-);
+insert into comments (content, user_id, post_id) values ('Wow', 1, 2);
+insert into comments (content, user_id, post_id) values ('So cool', 1, 1);
+insert into comments (content, user_id, post_id) values ('Amazing', 1, 3);
+insert into comments (content, user_id, post_id) values ('Hype', 1, 3);
+insert into comments (content, user_id, post_id) values ('Wowow', 1, 5);
