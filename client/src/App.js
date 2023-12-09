@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import './App.css';
+import axios from 'axios';
 
 function App() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:8000/message")
-      .then((res) => res.json())
-      .then((data) => setMessage(data.message));
+    axios.get("http://localhost:8000/message")
+      .then((response) => response.json())
+      .then((data) => setMessage(state => data.message));
   }, []);
 
   return (
