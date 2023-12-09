@@ -1,8 +1,13 @@
 const express = require("express");
-const mysql = require("mysql");
 const app = express();
 const database = require("./database");
+const morgan = require('morgan');
+const methodOverride = require('method-override');
+const ENV = process.env.ENV || "development";
 
+app.use(morgan('dev'));
+
+app.set("view engine", "ejs");
 // let db_con = mysql.createConnection({
 //     host: "localhost",
 //     user: "root",
