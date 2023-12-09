@@ -1,10 +1,10 @@
 const express = require("express");
 const cors = require('cors');
 const app = express();
-const database = require("./database");
-const morgan = require('morgan');
-const methodOverride = require('method-override');
-const ENV = process.env.ENV || "development";
+// const database = require("./database");
+// const morgan = require('morgan');
+// const methodOverride = require('method-override');
+// const ENV = process.env.ENV || "development";
 
 app.use(cors());
 app.use(express.json());
