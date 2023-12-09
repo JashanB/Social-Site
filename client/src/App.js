@@ -7,7 +7,7 @@ function App() {
 
   useEffect(() => {
     axios.get("http://localhost:8000/message")
-    .then((response) => setMessage(state => response.data.message))
+    .then((response) => setMessage(state => response.data.message));
   }, []);
 
   return (
