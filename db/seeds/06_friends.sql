@@ -1,10 +1,5 @@
-DROP TABLE IF EXISTS friends CASCADE;
-
-CREATE TABLE friends (
-  id SERIAL PRIMARY KEY NOT NULL,
-  user_id_1 SMALLINT NOT NULL,
-  user_id_2 SMALLINT NOT NULL,
-  createdAt DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (user_id_1) REFERENCES users(id),
-  FOREIGN KEY (user_id_2) REFERENCES users(id)
-);
+insert into friends (user_id_1, user_id_2) values (1, 2);
+insert into friends (user_id_1, user_id_2) values (1, 3);
+insert into friends (user_id_1, user_id_2) values (2, 3);
+insert into friends (user_id_1, user_id_2) values (4, 3);
+insert into friends (user_id_1, user_id_2) values (5, 1);
