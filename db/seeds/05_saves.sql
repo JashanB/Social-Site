@@ -1,9 +1,5 @@
-DROP TABLE IF EXISTS saves CASCADE;
-
-CREATE TABLE saves (
-  id SERIAL PRIMARY KEY NOT NULL,
-  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  post_id INTEGER REFERENCES posts(id) ON DELETE CASCADE,  
-  FOREIGN KEY (user_id) REFERENCES users(id),
-  FOREIGN KEY (post_id) REFERENCES posts(id)
-);
+insert into saves (user_id, post_id) values (1, 1);
+insert into saves (user_id, post_id) values (2, 1);
+insert into saves (user_id, post_id) values (3, 1);
+insert into saves (user_id, post_id) values (3, 4);
+insert into saves (user_id, post_id) values (4, 4);
