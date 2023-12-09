@@ -9,6 +9,15 @@ const ENV = process.env.ENV || "development";
 app.use(cors());
 app.use(express.json());
 
+app.get('/message', (req, res) => {
+    res.json({ message: "Hello from server!" });
+});
+
+app.listen(8000, () => {
+    console.log(`Server is up and running on 8000`);
+});
+  
+
 //Prior server code
 // app.use(morgan('dev'));
 // app.set("view engine", "ejs");
@@ -29,11 +38,3 @@ app.use(express.json());
 // module.exports = db_con;
 
 // const database = require('./sqlConnection');
-
-app.listen(8000, () => {
-    console.log(`Server is up and running on 8000`);
-});
-  
-app.get('/message', (req, res) => {
-    res.json({ message: "Hello from server!" });
-});
