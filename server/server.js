@@ -6,10 +6,11 @@ const bodyParser = require("body-parser");
 // const morgan = require('morgan');
 // const methodOverride = require('method-override');
 // const ENV = process.env.ENV || "development";
+
+//DB - to be transferred
 const { Pool } = require("pg");
 const dotenv = require("dotenv");
 dotenv.config();
- 
 const connectDb = async () => {
     try {
         const pool = new Pool({
@@ -27,18 +28,24 @@ const connectDb = async () => {
         console.log(error)
     }
 }
-
 connectDb()
 
-
+//APP
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+const router = express.Router();
 
-app.get('/message', (req, res) => {
-    res.json({ message: "Hello from server!" });
+router.get('/', function(req, res) {
+    res.json({ message: 'hooray! welcome to our api!' });
 });
+
+app.use('/api', router);
+
+// app.get('/message', (req, res) => {
+//     res.json({ message: "Hello from server!" });
+// });
 
 app.listen(8000, () => {
     console.log(`Server is up and running on 8000`);
