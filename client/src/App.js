@@ -6,7 +6,9 @@ function App() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:8000/message")
+    // axios.get("http://localhost:8000/message")
+    // .then((response) => setMessage(state => response.data.message));
+    axios.get("http://localhost:8000/message", )
     .then((response) => setMessage(state => response.data.message));
   }, []);
 
