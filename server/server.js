@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require('cors');
 const app = express();
+const bodyParser = require("body-parser");
 // const database = require("./database");
 // const morgan = require('morgan');
 // const methodOverride = require('method-override');
@@ -26,13 +27,14 @@ const connectDb = async () => {
         console.log(error)
     }
 }
- 
 
 connectDb()
 
 
 app.use(cors());
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.get('/message', (req, res) => {
     res.json({ message: "Hello from server!" });
