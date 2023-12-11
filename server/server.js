@@ -10,26 +10,38 @@ const bodyParser = require("body-parser");
 //DB - to be transferred
 const { Pool } = require("pg");
 const dotenv = require("dotenv");
+const dbParams = new Pool({
+    user: process.env.PGUSER,
+    host: process.env.PGHOST,
+    database: process.env.PGDATABASE,
+    password: process.env.PGPASSWORD,
+    port: process.env.PGPORT,
+});
 dotenv.config();
 const connectDb = async () => {
     try {
-        const pool = new Pool({
-            user: process.env.PGUSER,
-            host: process.env.PGHOST,
-            database: process.env.PGDATABASE,
-            password: process.env.PGPASSWORD,
-            port: process.env.PGPORT,
-        });
-        await pool.connect()
-        const res = await pool.query('SELECT * FROM users')
-        console.log(res.rows)
-        await pool.end()
+        // const pool = new Pool({
+        //     user: process.env.PGUSER,
+        //     host: process.env.PGHOST,
+        //     database: process.env.PGDATABASE,
+        //     password: process.env.PGPASSWORD,
+        //     port: process.env.PGPORT,
+        // });
+        await dbParams.connect()
+        // const res = await dbParams.query('SELECT * FROM users')
+        // console.log(res.rows)
+        // await dbParams.end()
     } catch (error) {
         console.log(error)
     }
 }
 connectDb()
 
+async function getAllUsers () {
+    const res = await dbParams.query('SELECT * FROM users');
+    console.log(res.rows)
+}
+getAllUsers();
 //APP
 app.use(cors());
 app.use(express.json());
@@ -41,6 +53,10 @@ router.get('/', function(req, res) {
     res.json({ message: 'hooray! welcome to our api!' });
 });
 
+router.route('/users/:user_id')
+    .get(function(req, res) {
+
+    })
 app.use('/api', router);
 
 // app.get('/message', (req, res) => {
