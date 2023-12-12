@@ -36,8 +36,36 @@ async function findUserWithEmail (email) {
     return res.rows;
 }
 
+async function searchUsersWithEmail (email) {
+    const res = await dbParams.query(`SELECT * FROM users WHERE email LIKE '%${email}%'`);
+    // console.log(res.rows)
+    return res.rows;
+}
+
+async function getAllPostsForUser (id) {
+    const res = await dbParams.query(`SELECT * FROM posts WHERE user_id LIKE '${id}'`);
+    // console.log(res.rows)
+    return res.rows;
+}
+
+async function getAllLikesForUser (id) {
+    const res = await dbParams.query(`SELECT * FROM likes WHERE user_id LIKE '${id}'`);
+    // console.log(res.rows)
+    return res.rows;
+}
+
+async function getAllSavesForUser (id) {
+    const res = await dbParams.query(`SELECT * FROM saves WHERE user_id LIKE '${id}'`);
+    // console.log(res.rows)
+    return res.rows;
+}
+
 exports.getAllUsers = getAllUsers;
 exports.findUserWithEmail = findUserWithEmail;
+exports.searchUsersWithEmail = searchUsersWithEmail;
+exports.getAllPostsForUser = getAllPostsForUser;
+exports.getAllLikesForUser = getAllLikesForUser;
+exports.getAllSavesForUser = getAllSavesForUser;
 
 // getAllUsers();
 
