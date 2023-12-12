@@ -30,7 +30,14 @@ async function getAllUsers () {
     return res.rows;
 }
 
+async function findUserWithEmail (email) {
+    const res = await dbParams.query(`SELECT * FROM users WHERE email LIKE "${email}"`);
+    console.log(res.rows)
+    return res.rows;
+}
+
 exports.getAllUsers = getAllUsers;
+exports.findUserWithEmail = findUserWithEmail;
 
 // getAllUsers();
 
