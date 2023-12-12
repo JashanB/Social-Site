@@ -21,17 +21,19 @@ router.get('/', function(req, res) {
         .then(data => {
             console.log(data)
             res.json({ message: data });
-
         })
-    // console.log(users)
-    console.log('here');
-    // res.json({ message: 'hooray! welcome to our api!' });
-
 });
 
-router.route('/users/:user_id')
+router.route('/users/:email')
     .get(function(req, res) {
-
+        const email = req.params.email
+        // console.log('req', req.params.email)
+        // console.log('res', res)
+        database.findUserWithEmail(email)
+            .then(data => {
+                console.log(data)
+                res.send({ message: data });
+            })
     })
 app.use('/api', router);
 
