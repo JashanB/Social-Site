@@ -3,10 +3,18 @@ import './App.css';
 import axios from 'axios';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from '../login'
+import { CookiesProvider, useCookies } from "react-cookie";
+
 
 function App() {
   const [message, setMessage] = useState("");
-  const [email, setEmail] = useState("clara@lighthouse.com")
+  const [email, setEmail] = useState("clara@lighthouse.com");
+  const [cookies, setCookie] = useCookies(["user"]);
+
+  function handleLogin(user) {
+    setCookie("user", user, { path: "/" });
+  }
+
   // console.log(message)
   useEffect(() => {
     // axios.get("http://localhost:8000/message")
