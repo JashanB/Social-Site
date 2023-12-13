@@ -3,6 +3,8 @@ const cors = require('cors');
 const app = express();
 const bodyParser = require("body-parser");
 const database = require("./database");
+const cookieSession = require('cookie-session');
+
 // const morgan = require('morgan');
 // const methodOverride = require('method-override');
 // const ENV = process.env.ENV || "development";
@@ -10,10 +12,32 @@ const database = require("./database");
 //DB - to be transferred
 
 //APP
-app.use(cors());
+// app.use(cors());
+app.use(cors(
+    {
+      origin: 'http://localhost:3000',
+      optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+    }
+));
+app.use(function(req, res, next) {
+    res.header('Content-Type', 'application/json;charset=UTF-8')
+    res.header('Access-Control-Allow-Credentials', true)
+    res.header(
+      'Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, Content-Type, Accept'
+    )
+    next()
+})
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cookieSession({
+    name: 'session',
+    secret: 'me',
+    // Cookie Options
+    maxAge: 2592000
+  }));
+
 const router = express.Router();
 
 router.get('/', function(req, res) {
@@ -57,9 +81,10 @@ router.route('/login')
         // console.log('req', req.params.email)
         // console.log('login params', req)
         database.loginUser(req.body.email, req.body.password)
-            .then(data => {
+            .then(user => {
+                req.session.
                 // console.log('data', data)
-                res.send({ user: data });
+                res.send({ user: user });
             })
     })
     
