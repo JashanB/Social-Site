@@ -13,7 +13,7 @@ function Login () {
                 email: email,
                 password: password
             };
-            axios.post("http://localhost:8000/api/login", user)
+            axios.post(`http://localhost:8000/api/login`, user)
             .then((response) => {
               console.log('login', response)
               // if (response.data.message) setMessage(state => response.data.message)
