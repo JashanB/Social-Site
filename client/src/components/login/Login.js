@@ -11,10 +11,11 @@ function Login() {
 
     useEffect(() => {
         //Check if user is logged in
-        if (!isLoggedIn) {
-
+        if (isLoggedIn) {
+            navigate("/");
         }
-    })
+    }, [navigate, isLoggedIn])
+    
     function handleSubmit(event) {
         event.preventDefault();
         if (email.length > 0 && password.length > 0) {
@@ -27,9 +28,9 @@ function Login() {
                     console.log('login', response)
                     if (response.data.user && email === response.data.user.email && password === response.data.user.password) {
                         console.log(user);
-                        setisLoggedIn(state => true);
+                        setisLoggedIn(true);
                         //display check mark or something 
-                        navigate("/");
+                        // navigate("/");
                     } else {
                         //show either info doesn't exist, or is incorrect
                     }
