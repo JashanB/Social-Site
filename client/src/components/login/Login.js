@@ -2,14 +2,25 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import './Login.css';
 
-function Login ({ onLogin }) {
+function Login () {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     function handleSubmit(event) {
         event.preventDefault();
-    
-        onLogin({ email, password });
+        if (email.length >0 && password.length >0) {
+            const user = {
+                email: email,
+                password: password
+            };
+            axios.post("http://localhost:8000/api/login", user)
+            .then((response) => {
+              console.log('login', response)
+              // if (response.data.message) setMessage(state => response.data.message)
+            //   setMessage(state => response.data.message);
+            });
+        }
+        
     }
 
 
