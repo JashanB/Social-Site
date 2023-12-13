@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import './App.css';
 import axios from 'axios';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
   const [message, setMessage] = useState("");
@@ -25,6 +26,10 @@ function App() {
 
   return (
     <div className="App">
+      <Switch>
+        <Route path='/login' render={<h1></h1>} />
+      </Switch>
+
     </div>
   );
 }
