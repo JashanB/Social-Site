@@ -51,16 +51,16 @@ router.route('/profile/:user_id')
             })
     })
 
-    router.route('/login')
-    .get(function(req, res) {
+router.route('/login')
+    .post(function(req, res) {
         // const email = req.params.email
         // console.log('req', req.params.email)
-        console.log('login params', req)
-        // database.findUserWithEmail(email)
-        //     .then(data => {
-        //         console.log(data)
-        //         res.send({ message: data });
-        //     })
+        // console.log('login params', req)
+        database.loginUser(req.body.email, req.body.password)
+            .then(data => {
+                // console.log('data', data)
+                res.send({ user: data });
+            })
     })
     
 app.use('/api', router);
