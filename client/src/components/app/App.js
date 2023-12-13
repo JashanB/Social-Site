@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import './App.css';
 import axios from 'axios';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Login from '../login'
 
 function App() {
   const [message, setMessage] = useState("");
@@ -27,7 +28,7 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Route path='/login' render={<h1></h1>} />
+        <Route path='/login' render={<Login />} />
       </Switch>
 
     </div>
