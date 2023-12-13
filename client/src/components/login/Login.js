@@ -1,26 +1,44 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import './Login.css';
 
-function Login () {
+function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
+    const [isLoggedIn, setisLoggedIn] = useState(false);
 
+    useEffect(() => {
+        //Check if user is logged in
+        if (!isLoggedIn) {
+
+        }
+    })
     function handleSubmit(event) {
         event.preventDefault();
-        if (email.length >0 && password.length >0) {
+        if (email.length > 0 && password.length > 0) {
             const user = {
                 email: email,
                 password: password
             };
             axios.post(`http://localhost:8000/api/login`, user)
-            .then((response) => {
-              console.log('login', response)
-              // if (response.data.message) setMessage(state => response.data.message)
-            //   setMessage(state => response.data.message);
-            });
+                .then((response) => {
+                    console.log('login', response)
+                    if (response.data.user && email === response.data.user.email && password === response.data.user.password) {
+                        console.log(user);
+                        setisLoggedIn(state => true);
+                        //display check mark or something 
+                        navigate("/");
+                    } else {
+                        //show either info doesn't exist, or is incorrect
+                    }
+                    //if response.data undefined - show either info doesn't exist, or is incorrect
+                    // if (response.data.message) setMessage(state => response.data.message)
+                    //   setMessage(state => response.data.message);
+                });
         }
-        
+
     }
 
 
