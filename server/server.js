@@ -35,6 +35,34 @@ router.route('/users/:email')
                 res.send({ message: data });
             })
     })
+
+router.route('/profile/:user_id')
+    .get(function(req, res) {
+        const user = req.params.user_id
+        const likes = {};
+        const posts = {};
+        const saves = {};
+        // console.log('req', req.params.email)
+        // console.log('res', res)
+        database.getAllPostsForUser(user)
+            .then(data => {
+                console.log(data)
+                res.send({ message: data });
+            })
+    })
+
+    router.route('/login')
+    .get(function(req, res) {
+        // const email = req.params.email
+        // console.log('req', req.params.email)
+        console.log('login params', req)
+        // database.findUserWithEmail(email)
+        //     .then(data => {
+        //         console.log(data)
+        //         res.send({ message: data });
+        //     })
+    })
+    
 app.use('/api', router);
 
 // app.get('/message', (req, res) => {
