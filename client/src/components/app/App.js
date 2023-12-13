@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import './App.css';
 import axios from 'axios';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from '../login'
 import { CookiesProvider, useCookies } from "react-cookie";
 
@@ -11,9 +11,9 @@ function App() {
   const [email, setEmail] = useState("clara@lighthouse.com");
   const [cookies, setCookie] = useCookies(["user"]);
 
-  function handleLogin(user) {
-    setCookie("user", user, { path: "/" });
-  }
+  // function handleLogin(user) {
+  //   setCookie("user", user, { path: "/" });
+  // }
 
   // console.log(message)
   useEffect(() => {
@@ -34,12 +34,15 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <Switch>
-        <Route path='/login' render={<Login />} />
-      </Switch>
-
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/" element={<h1></h1>}></Route>
+          <Route path='*' element={<Navigate to='/' />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
