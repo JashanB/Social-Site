@@ -39,7 +39,13 @@ async function findUserWithEmail (email) {
 async function loginUser (email, password) {
     const res = await dbParams.query(`SELECT * FROM users WHERE email LIKE '${email}' AND password LIKE '${password}'`);
     // console.log(res.rows)
-    return res.rows;
+    // return res.rows;
+    if (res) {
+        user = res.rows[0];
+      } else {
+        user = null;
+      }
+      return user;
 }
 
 async function searchUsersWithEmail (email) {
