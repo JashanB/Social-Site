@@ -3,8 +3,8 @@ import './App.css';
 import axios from 'axios';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from '../login'
+import SignUp from '../signUp'
 import { CookiesProvider, useCookies } from "react-cookie";
-
 
 function App() {
   const [message, setMessage] = useState("");
@@ -39,6 +39,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/login" element={<Login user={cookies.user} handleLogin={handleLogin} />}></Route>
+          <Route path="/signup" element={<SignUp user={cookies.user} handleLogin={handleLogin} />}></Route>
           <Route path="/" element={<h1></h1>}></Route>
           <Route path='*' element={<Navigate to='/' />} />
         </Routes>
