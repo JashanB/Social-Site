@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
-import './Login.css';
+import './SignUp.css';
 
 function SignUp(props) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [dob, setDOB] = useState("");
     const navigate = useNavigate();
     const [isLoggedIn, setisLoggedIn] = useState(false);
 
@@ -18,20 +19,19 @@ function SignUp(props) {
 
     function handleSubmit(event) {
         event.preventDefault();
-        if (email.length > 0 && password.length > 0) {
+        if (email.length > 0 && password.length > 0 && dob.length > 0) {
             const user = {
                 email: email,
-                password: password
+                password: password,
+                dob: dob
             };
             //need to create user with credentials, then send response if successful 
-            
-
-            axios.post(`http://localhost:8000/api/login`, user)
+            axios.post(`http://localhost:8000/api/createuser`, user)
                 .then((response) => {
-                    console.log('login', response)
-                    if (response.data.user && email === response.data.user.email && password === response.data.user.password) {
+                    console.log('create', response)
+                    if (response.data.user && response.data.user.email && response.data.user.password) {
                         console.log(response.data.user);
-                        console.log(response);
+                        // console.log(response);
                         setisLoggedIn(true);
                         props.handleLogin({...user, id: response.data.user.id})
                         //display check mark or something 
@@ -73,6 +73,17 @@ function SignUp(props) {
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                    />
+                </label>    
+                <br />
+                <label>
+                    DOB:
+                    <input
+                        type="date"
+                        value={dob}
+                        min="1900-01-01" 
+                        max="2023-12-31"
+                        onChange={(e) => setDOB(e.target.value)}
                     />
                 </label>
                 <br />
