@@ -48,6 +48,13 @@ async function loginUser (email, password) {
       return user;
 }
 
+async function createUser (email, password, dob) {
+    const res = await dbParams.query(`INSERT into users (email, password, dob) VALUES ('${email}', '${password}', '${dob}') RETURNING *`)
+    .then(function (res) {
+        return res.rows[0];
+      })
+}
+
 async function searchUsersWithEmail (email) {
     const res = await dbParams.query(`SELECT * FROM users WHERE email LIKE '%${email}%'`);
     // console.log(res.rows)
@@ -73,6 +80,7 @@ async function getAllSavesForUser (id) {
 }
 
 exports.getAllUsers = getAllUsers;
+exports.createUser = createUser;
 exports.loginUser = loginUser;
 exports.findUserWithEmail = findUserWithEmail;
 exports.searchUsersWithEmail = searchUsersWithEmail;
