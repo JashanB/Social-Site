@@ -87,8 +87,19 @@ router.route('/login')
                 // console.log('data', data)
                 res.send({ user: user });
             })
-    })
-    
+})
+
+router.route('/createuser')
+    .post(function(req, res) {
+        // const email = req.params.email
+        // console.log('req', req.params.email)
+        // console.log('login params', req)
+        database.createUser(req.body.email, req.body.password, req.body.dob)
+            .then(user => {
+                // console.log('data', data)
+                res.send({ user: user });
+            })
+})
 app.use('/api', router);
 
 // app.get('/message', (req, res) => {
