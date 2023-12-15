@@ -1,2 +1,2 @@
-export {default} from "./ogin"
+export {default} from "./login"
 
