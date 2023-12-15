@@ -35,7 +35,8 @@ app.use(cookieSession({
     name: 'session',
     secret: 'me',
     // Cookie Options
-    maxAge: 2592000
+    // maxAge: 2592000
+    maxAge: 1000
   }));
 
 const router = express.Router();
