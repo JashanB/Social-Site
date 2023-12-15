@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import './Login.css';
 
-function Login() {
+function Login(props) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
@@ -11,11 +11,11 @@ function Login() {
 
     useEffect(() => {
         //Check if user is logged in
-        if (isLoggedIn) {
+        if (isLoggedIn || props.user) {
             navigate("/");
         }
     }, [navigate, isLoggedIn])
-    
+
     function handleSubmit(event) {
         event.preventDefault();
         if (email.length > 0 && password.length > 0) {
@@ -27,8 +27,10 @@ function Login() {
                 .then((response) => {
                     console.log('login', response)
                     if (response.data.user && email === response.data.user.email && password === response.data.user.password) {
-                        console.log(user);
+                        console.log(response.data.user);
+                        console.log(response);
                         setisLoggedIn(true);
+                        props.handleLogin({...user, id: response.data.user.id})
                         //display check mark or something 
                         // navigate("/");
                     } else {

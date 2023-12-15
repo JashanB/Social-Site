@@ -82,7 +82,8 @@ router.route('/login')
         // console.log('login params', req)
         database.loginUser(req.body.email, req.body.password)
             .then(user => {
-                req.session.
+                //set cookie
+                req.session.userid = user.id;
                 // console.log('data', data)
                 res.send({ user: user });
             })
