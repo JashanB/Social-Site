@@ -4,6 +4,7 @@ import axios from 'axios';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from '../login'
 import SignUp from '../signUp'
+import Profile from '../profile'
 import { CookiesProvider, useCookies } from "react-cookie";
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login user={cookies.user} handleLogin={handleLogin} />}></Route>
           <Route path="/signup" element={<SignUp user={cookies.user} handleLogin={handleLogin} />}></Route>
+          <Route path="/profile" element={<Profile user={cookies.user} />}></Route>
           <Route path="/" element={<h1></h1>}></Route>
           <Route path='*' element={<Navigate to='/' />} />
         </Routes>
