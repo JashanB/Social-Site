@@ -7,7 +7,9 @@ function Profile (props) {
     const [page, setPage] = useState(['posts']);
     const [data, setData] = useState({});
 
-    async function fetchData
+    async function fetchData (data) {
+        
+    }
 
     useEffect(() => {
 
