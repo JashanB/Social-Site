@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import './App.css';
 import axios from 'axios';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import Login from '../login'
 import SignUp from '../signUp'
 import Profile from '../profile'
@@ -11,12 +11,16 @@ function App() {
   const [message, setMessage] = useState("");
   const [email, setEmail] = useState("clara@lighthouse.com");
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  // const navigate = useNavigate();
 
+  //set cookie on login
   function handleLogin(user) {
     setCookie("user", user, { path: "/" });
     console.log('logged in!')
   }
   console.log(cookies.user)
+  
+  //remove cookie on site closing
   useEffect(() => {
     const handleUnload = () => {
       // Remove the 'user' cookie when the site is closed
@@ -29,6 +33,16 @@ function App() {
       window.removeEventListener('beforeunload', handleUnload);
     };
   }, [removeCookie]);
+
+  //handle logout
+  const handleLogout = () => {
+    // Remove the 'user' cookie at logout
+    removeCookie('user');
+    // Redirect to the login page or wherever you need after logout
+    // navigate('/login');
+  };
+
+
   // console.log(message)
   // useEffect(() => {
   //   // axios.get("http://localhost:8000/message")
@@ -51,6 +65,7 @@ function App() {
   return (
     <Router>
       <div className="App">
+      <button onClick={handleLogout}>Logout</button>
         <Routes>
           <Route path="/login" element={<Login user={cookies.user} handleLogin={handleLogin} />}></Route>
           <Route path="/signup" element={<SignUp user={cookies.user} handleLogin={handleLogin} />}></Route>
