@@ -10,12 +10,25 @@ import { CookiesProvider, useCookies } from "react-cookie";
 function App() {
   const [message, setMessage] = useState("");
   const [email, setEmail] = useState("clara@lighthouse.com");
-  const [cookies, setCookie] = useCookies(["user"]);
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
 
   function handleLogin(user) {
     setCookie("user", user, { path: "/" });
+    console.log('logged in!')
   }
   console.log(cookies.user)
+  useEffect(() => {
+    const handleUnload = () => {
+      // Remove the 'user' cookie when the site is closed
+      removeCookie('user', { path: '/' });
+    };
+
+    window.addEventListener('beforeunload', handleUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleUnload);
+    };
+  }, [removeCookie]);
   // console.log(message)
   // useEffect(() => {
   //   // axios.get("http://localhost:8000/message")
