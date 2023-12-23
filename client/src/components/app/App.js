@@ -20,7 +20,7 @@ function App() {
   }
   console.log(cookies.user)
   
-  //remove cookie on site closing
+  //remove cookie on site closing for dev
   useEffect(() => {
     const handleUnload = () => {
       // Remove the 'user' cookie when the site is closed
@@ -41,6 +41,11 @@ function App() {
     // Redirect to the login page or wherever you need after logout
     // navigate('/login');
   };
+
+  //navigate to profile
+  function profileNav () {
+
+  }
 
 
   // console.log(message)
