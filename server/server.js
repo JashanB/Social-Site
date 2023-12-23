@@ -69,18 +69,33 @@ router.route('/profile/:page')
         const user = req.body.id
         console.log('user', user)
         //call specific function based on the page that is being accessed
-
-
-        const likes = {};
-        const posts = {};
-        const saves = {};
-        // console.log('req', req.params.email)
-        // console.log('res', res)
-        database.getAllPostsForUser(user)
+        if (selectedPage === 'posts') {
+            database.getAllPostsForUser(user)
             .then(data => {
                 console.log(data)
-                res.send({ message: data });
+                res.send({ data: data });
             })
+        } else if (selectedPage === 'likes') {
+            database.getAllPostsForUser(user)
+            .then(data => {
+                console.log(data)
+                res.send({ data: data });
+            })
+        } else if (selectedPage === 'saves') {
+            database.getAllPostsForUser(user)
+            .then(data => {
+                console.log(data)
+                res.send({ data: data });
+            })
+        } else {
+            //handle missing information
+        }
+
+        // const likes = {};
+        // const posts = {};
+        // const saves = {};
+        // console.log('req', req.params.email)
+        // console.log('res', res)
     })
 
 router.route('/login')
