@@ -28,9 +28,9 @@ function Profile({ user }) {
             });
     }
 
-    useEffect(() => {
+    // useEffect(() => {
 
-    }, [])
+    // }, [])
     //have option on profile to show either posts (default), liked, saved
     //make state to show each of them on demand
     //make axios get request to get data for each of them
