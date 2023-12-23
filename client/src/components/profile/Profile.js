@@ -17,9 +17,8 @@ function Profile({ user }) {
         }
     }, [navigate])
 
-    async function fetchData(event, selectedData, id) {
+    async function fetchData(selectedData, id) {
         // const id = user.id;
-        event.preventDefault();
         axios.get(`http://localhost:8000/api/profile/${selectedData}`, id)
             .then((response) => {
                 console.log('profile', response)
@@ -47,7 +46,9 @@ function Profile({ user }) {
 
     return (
         <div className={"profile-page"}>
-            <button onClick={() => {}}></button>
+            <button onClick={fetchData('posts', user.id)}>Posts</button>
+            <button onClick={fetchData('likes', user.id)}>Liked</button>
+            <button onClick={fetchData('saves', user.id)}>Saved</button>
         </div>
     )
 }
