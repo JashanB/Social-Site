@@ -16,7 +16,8 @@ function Profile({ user }) {
     }
 
     async function fetchData(selectedData, url) {
-        axios.post(`http://localhost:8000/api/createuser`, user)
+        const id = user.id;
+        axios.get(`http://localhost:8000/api/profile/${selectedData}`, id)
             .then((response) => {
                 console.log('create', response)
                 if (response.data.user && response.data.user.email && response.data.user.password) {
