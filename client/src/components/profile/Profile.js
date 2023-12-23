@@ -15,24 +15,16 @@ function Profile({ user }) {
         return null; // Render nothing while redirecting
     }
 
-    async function fetchData(selectedData, url) {
-        const id = user.id;
+    async function fetchData(selectedData, id) {
+        // const id = user.id;
         axios.get(`http://localhost:8000/api/profile/${selectedData}`, id)
             .then((response) => {
-                console.log('create', response)
-                if (response.data.user && response.data.user.email && response.data.user.password) {
-                    console.log(response.data.user);
-                    // console.log(response);
-                    setisLoggedIn(true);
-                    props.handleLogin({ ...user, id: response.data.user.id })
-                    //display check mark or something 
-                    // navigate("/");
-                } else {
-                    //show either info doesn't exist, or there was an error
-                }
+                console.log('profile', response)
+                //with data - spread object and add to each from each function call, need to add a thing first when switching page
+                //to show that no need for another api request
             })
             .catch(error => {
-
+                //handle error
             });
     }
 
