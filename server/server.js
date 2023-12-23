@@ -60,10 +60,11 @@ router.route('/users/:email')
                 res.send({ message: data });
             })
     })
-
-router.route('/profile/:user_id')
+//User's profile route
+router.route('/profile')
     .get(function(req, res) {
-        const user = req.params.user_id
+        // const user = req.params.user_id
+        const user = req.body.id
         const likes = {};
         const posts = {};
         const saves = {};
