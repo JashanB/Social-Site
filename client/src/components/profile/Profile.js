@@ -3,12 +3,29 @@ import axios from 'axios';
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import './Profile.css';
 
-function Profile (props) {
+function Profile ({user}) {
+    const pages = ['posts', 'likes', 'saves']
     const [page, setPage] = useState(['posts']);
     const [data, setData] = useState({});
 
-    async function fetchData (data) {
-        
+    async function fetchData (selectedData, url) {  
+       axios.post(`http://localhost:8000/api/createuser`, user)
+        .then((response) => {
+            console.log('create', response)
+            if (response.data.user && response.data.user.email && response.data.user.password) {
+                console.log(response.data.user);
+                // console.log(response);
+                setisLoggedIn(true);
+                props.handleLogin({...user, id: response.data.user.id})
+                //display check mark or something 
+                // navigate("/");
+            } else {
+                //show either info doesn't exist, or there was an error
+            }
+        })
+        .catch(error => {
+
+        });
     }
 
     useEffect(() => {
