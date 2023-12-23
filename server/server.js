@@ -72,19 +72,19 @@ router.route('/profile/:page')
         if (selectedPage === 'posts') {
             database.getAllPostsForUser(user)
             .then(data => {
-                console.log(data)
+                console.log('posts', data)
                 res.send({ data: data });
             })
         } else if (selectedPage === 'likes') {
             database.getAllPostsForUser(user)
             .then(data => {
-                console.log(data)
+                console.log('likes', data)
                 res.send({ data: data });
             })
         } else if (selectedPage === 'saves') {
             database.getAllPostsForUser(user)
             .then(data => {
-                console.log(data)
+                console.log('saves', data)
                 res.send({ data: data });
             })
         } else {
