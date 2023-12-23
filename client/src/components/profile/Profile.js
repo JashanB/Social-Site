@@ -10,13 +10,16 @@ function Profile({ user }) {
     const [data, setData] = useState({});
 
     // Check if user is logged in
-    if (!user) {
-        navigate('/login');
-        return null; // Render nothing while redirecting
-    }
+    useEffect(() => {
+        //Check if user is logged in
+        if (!user) {
+            navigate("/login");
+        }
+    }, [navigate])
 
-    async function fetchData(selectedData, id) {
+    async function fetchData(event, selectedData, id) {
         // const id = user.id;
+        event.preventDefault();
         axios.get(`http://localhost:8000/api/profile/${selectedData}`, id)
             .then((response) => {
                 console.log('profile', response)
@@ -26,6 +29,11 @@ function Profile({ user }) {
             .catch(error => {
                 //handle error
             });
+    }
+
+    function handlePageClick (event) {
+        event.preventDefault();
+
     }
 
     // useEffect(() => {
@@ -39,7 +47,7 @@ function Profile({ user }) {
 
     return (
         <div className={"profile-page"}>
-
+            <button onClick={() => {}}></button>
         </div>
     )
 }
