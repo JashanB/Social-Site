@@ -62,19 +62,19 @@ async function searchUsersWithEmail (email) {
 }
 
 async function getAllPostsForUser (id) {
-    const res = await dbParams.query(`SELECT * FROM posts WHERE user_id LIKE '${id}'`);
+    const res = await dbParams.query(`SELECT * FROM posts WHERE user_id = '${id}'`);
     // console.log(res.rows)
     return res.rows;
 }
 
 async function getAllLikesForUser (id) {
-    const res = await dbParams.query(`SELECT * FROM likes WHERE user_id LIKE '${id}'`);
+    const res = await dbParams.query(`SELECT * FROM likes WHERE user_id = '${id}'`);
     // console.log(res.rows)
     return res.rows;
 }
 
 async function getAllSavesForUser (id) {
-    const res = await dbParams.query(`SELECT * FROM saves WHERE user_id LIKE '${id}'`);
+    const res = await dbParams.query(`SELECT * FROM saves WHERE user_id = '${id}'`);
     // console.log(res.rows)
     return res.rows;
 }
