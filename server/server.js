@@ -61,10 +61,16 @@ router.route('/users/:email')
             })
     })
 //User's profile route
-router.route('/profile')
+router.route('/profile/:page')
     .get(function(req, res) {
         // const user = req.params.user_id
+        const selectedPage = req.params.page;
+        console.log('page', selectedPage)
         const user = req.body.id
+        console.log('user', user)
+        //call specific function based on the page that is being accessed
+
+
         const likes = {};
         const posts = {};
         const saves = {};
