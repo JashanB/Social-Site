@@ -16,8 +16,17 @@ function Landing(props) {
         }
     }
 
+    //handle logout
+    const handleLogout = () => {
+        // Remove the 'user' cookie at logout
+        props.removeCookie('user');
+        // Redirect to the login page or wherever you need after logout
+        navigate('/login');
+    };
+
     return (
         <div className={"landing-page"}>
+            <button onClick={handleLogout}>Logout</button>
             <button onClick={(e) => profileNav(e)}>Profile</button>
         </div>
     )

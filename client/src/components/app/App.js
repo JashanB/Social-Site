@@ -35,14 +35,6 @@ function App() {
     };
   }, [removeCookie]);
 
-  //handle logout
-  const handleLogout = () => {
-    // Remove the 'user' cookie at logout
-    removeCookie('user');
-    // Redirect to the login page or wherever you need after logout
-    // navigate('/login');
-  };
-
 
   // console.log(message)
   // useEffect(() => {
@@ -66,12 +58,11 @@ function App() {
   return (
     <Router>
       <div className="App">
-      <button onClick={handleLogout}>Logout</button>
         <Routes>
           <Route path="/login" element={<Login user={cookies.user} handleLogin={handleLogin} />}></Route>
           <Route path="/signup" element={<SignUp user={cookies.user} handleLogin={handleLogin} />}></Route>
           <Route path="/profile" element={<Profile user={cookies.user} />}></Route>
-          <Route path="/" element={<Landing user={cookies.user} />}></Route>
+          <Route path="/" element={<Landing removeCookie={removeCookie} user={cookies.user} />}></Route>
           <Route path='*' element={<Navigate to='/' />} />
         </Routes>
       </div>
