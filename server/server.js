@@ -61,13 +61,14 @@ router.route('/users/:email')
             })
     })
 //User's profile route
-router.route('/profile/:page')
+router.route('/profile/:page/:user_id')
     .get(function(req, res) {
-        // const user = req.params.user_id
+        const user = req.params.user_id
         const selectedPage = req.params.page;
         console.log('page', selectedPage)
-        const user = req.body.id
-        console.log('user', user)
+        // console.log(req.body)
+        // const user = req.body.id
+        // console.log('user', user)
         //call specific function based on the page that is being accessed
         if (selectedPage === 'posts') {
             database.getAllPostsForUser(user)
