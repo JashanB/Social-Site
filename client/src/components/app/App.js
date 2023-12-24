@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'r
 import Login from '../login'
 import SignUp from '../signUp'
 import Profile from '../profile'
+import Landing from '../landing'
 import { CookiesProvider, useCookies } from "react-cookie";
 
 function App() {
@@ -42,11 +43,6 @@ function App() {
     // navigate('/login');
   };
 
-  //navigate to profile
-  function profileNav () {
-
-  }
-
 
   // console.log(message)
   // useEffect(() => {
@@ -75,7 +71,7 @@ function App() {
           <Route path="/login" element={<Login user={cookies.user} handleLogin={handleLogin} />}></Route>
           <Route path="/signup" element={<SignUp user={cookies.user} handleLogin={handleLogin} />}></Route>
           <Route path="/profile" element={<Profile user={cookies.user} />}></Route>
-          <Route path="/" element={<h1></h1>}></Route>
+          <Route path="/" element={<Landing user={cookies.user} />}></Route>
           <Route path='*' element={<Navigate to='/' />} />
         </Routes>
       </div>
