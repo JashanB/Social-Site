@@ -5,7 +5,7 @@ import './Landing.css';
 
 function Landing(props) {
     const navigate = useNavigate();
-    
+
     //navigate to profile
     function profileNav(event) {
         event.preventDefault();
@@ -18,7 +18,7 @@ function Landing(props) {
 
     return (
         <div className={"landing-page"}>
-            <button onClick={(e) => profileNav(e)}></button>
+            <button onClick={(e) => profileNav(e)}>Profile</button>
         </div>
     )
 }
