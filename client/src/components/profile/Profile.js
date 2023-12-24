@@ -20,7 +20,7 @@ function Profile({ user }) {
     async function fetchData(selectedData, id) {
         // const id = user.id;
         console.log(id)
-        axios.get(`http://localhost:8000/api/profile/${selectedData}`, id)
+        axios.get(`http://localhost:8000/api/profile/${selectedData}/${id}`)
             .then((response) => {
                 console.log('profile', response)
                 //with data - spread object and add to each from each function call, need to add a thing first when switching page
