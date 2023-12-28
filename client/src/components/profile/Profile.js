@@ -15,11 +15,12 @@ function Profile({ user }) {
         if (!user) {
             navigate("/login");
         }
+        fetchData('posts', user.id);
     }, [navigate])
 
     async function fetchData(selectedData, id) {
         // const id = user.id;
-        console.log(id)
+        // console.log(id)
         axios.get(`http://localhost:8000/api/profile/${selectedData}/${id}`)
             .then((response) => {
                 console.log('profile', response)
@@ -35,16 +36,8 @@ function Profile({ user }) {
         event.preventDefault();
 
     }
-
-    // useEffect(() => {
-
-    // }, [])
-    //have option on profile to show either posts (default), liked, saved
-    //make state to show each of them on demand
-    //make axios get request to get data for each of them
-    //either make req for posts first, then the other 2 after (save as object + spread), or request for all 3 initially, or request only on clicking each
-    //lazy load images - will be using on home page too
-
+    //lazy load images
+    //iterate through post data, creating a div and img for each one with an onclick function that opens the post 
     return (
         <div className={"profile-page"}>
             <button onClick={() => fetchData('posts', user.id)}>Posts</button>
