@@ -55,6 +55,13 @@ async function createUser (email, password, dob) {
       })
 }
 
+async function deleteUser (email, password) {
+    const res = await dbParams.query(`DELETE from users WHERE email = '${email}' AND password = '${password}'`)
+    .then(function (res) {
+        return res.rows[0];
+      })
+}
+
 async function searchUsersWithEmail (email) {
     const res = await dbParams.query(`SELECT * FROM users WHERE email LIKE '%${email}%'`);
     // console.log(res.rows)
@@ -81,6 +88,7 @@ async function getAllSavesForUser (id) {
 
 exports.getAllUsers = getAllUsers;
 exports.createUser = createUser;
+exports.deleteUser = deleteUser;
 exports.loginUser = loginUser;
 exports.findUserWithEmail = findUserWithEmail;
 exports.searchUsersWithEmail = searchUsersWithEmail;
