@@ -124,6 +124,23 @@ router.route('/createuser')
                 res.send({ user: user });
             })
 })
+
+//Delete user
+router.route('/deleteuser')
+    .post(function(req, res) {
+        // const email = req.params.email
+        // console.log('req', req.params.email)
+        // console.log('login params', req)
+        database.deleteUser(req.body.email, req.body.password)
+            .then(user => {
+                // console.log('data', data)
+                res.send({ user: user });
+            })
+            .catch(err => {
+                console.log(err)
+            })
+})
+
 app.use('/api', router);
 
 // app.get('/message', (req, res) => {
