@@ -24,6 +24,9 @@ function Profile({ user }) {
         axios.get(`http://localhost:8000/api/profile/${selectedData}/${id}`)
             .then((response) => {
                 console.log('profile', response)
+                setData(state => ({
+                    ...state, selectedData: response.data
+                }) )
                 //with data - spread object and add to each from each function call, need to add a thing first when switching page
                 //to show that no need for another api request
             })
