@@ -6,6 +6,10 @@ import './Login.css';
 function Login(props) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [userInfo, setUserInfo] = useState({
+        email: "",
+        password: ""
+    })
     const navigate = useNavigate();
     const [isLoggedIn, setisLoggedIn] = useState(false);
 
@@ -25,7 +29,7 @@ function Login(props) {
             };
             axios.post(`http://localhost:8000/api/login`, user)
                 .then((response) => {
-                    console.log('login', response)
+                    // console.log('login', response)
                     if (response.data.user && email === response.data.user.email && password === response.data.user.password) {
                         console.log(response.data.user);
                         console.log(response);
