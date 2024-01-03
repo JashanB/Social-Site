@@ -4,9 +4,9 @@ import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import './Login.css';
 
 function Login(props) {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [userInfo, setUserInfo] = useState({
+    // const [email, setEmail] = useState("");
+    // const [password, setPassword] = useState("");
+    const [user, setUser] = useState({
         email: "",
         password: ""
     });
@@ -21,7 +21,7 @@ function Login(props) {
     }, [navigate, isLoggedIn])
 
     const handleForm = (e) => {
-        setUserInfo((state) => ({
+        setUser((state) => ({
             ...state,[e.target.name]: e.target.value
         }))
     } 
@@ -29,10 +29,10 @@ function Login(props) {
     function handleSubmit(event) {
         event.preventDefault();
         if (email.length > 0 && password.length > 0) {
-            const user = {
-                email: email,
-                password: password
-            };
+            // const user = {
+            //     email: email,
+            //     password: password
+            // };
             axios.post(`http://localhost:8000/api/login`, user)
                 .then((response) => {
                     // console.log('login', response)
@@ -69,7 +69,7 @@ function Login(props) {
                     Email:
                     <input
                         type="text"
-                        value={email}
+                        value={user.email}
                         name="email"
                         onChange={handleForm}
                     />
@@ -79,7 +79,7 @@ function Login(props) {
                     Password:
                     <input
                         type="password"
-                        value={password}
+                        value={user.password}
                         name="password"
                         onChange={handleForm}
                     />
