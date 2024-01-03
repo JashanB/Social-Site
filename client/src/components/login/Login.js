@@ -9,7 +9,7 @@ function Login(props) {
     const [userInfo, setUserInfo] = useState({
         email: "",
         password: ""
-    })
+    });
     const navigate = useNavigate();
     const [isLoggedIn, setisLoggedIn] = useState(false);
 
@@ -19,6 +19,12 @@ function Login(props) {
             navigate("/");
         }
     }, [navigate, isLoggedIn])
+
+    const handleForm = (e) => {
+        setUserInfo((state) => ({
+            ...state,[e.target.name]: e.target.value
+        }))
+    } 
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -31,8 +37,8 @@ function Login(props) {
                 .then((response) => {
                     // console.log('login', response)
                     if (response.data.user && email === response.data.user.email && password === response.data.user.password) {
-                        console.log(response.data.user);
-                        console.log(response);
+                        // console.log(response.data.user);
+                        // console.log(response);
                         setisLoggedIn(true);
                         props.handleLogin({...user, id: response.data.user.id})
                         //display check mark or something 
@@ -64,7 +70,8 @@ function Login(props) {
                     <input
                         type="text"
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        name="email"
+                        onChange={handleForm}
                     />
                 </label>
                 <br />
@@ -73,7 +80,8 @@ function Login(props) {
                     <input
                         type="password"
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        name="password"
+                        onChange={handleForm}
                     />
                 </label>
                 <br />
