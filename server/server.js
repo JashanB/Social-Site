@@ -63,6 +63,13 @@ router.route('/users/:email')
             })
     })
 
+//Home page route
+router.route('/home/:user_id')
+    .get(function(req, res) {
+        const user = req.params.user_id
+        
+    })
+
 //User's profile route
 router.route('/profile/:page/:user_id')
     .get(function(req, res) {
