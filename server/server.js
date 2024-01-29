@@ -41,6 +41,7 @@ app.use(cookieSession({
 
 const router = express.Router();
 
+//Testing route
 router.get('/', function(req, res) {
     database.getAllUsers()
         .then(data => {
@@ -49,6 +50,7 @@ router.get('/', function(req, res) {
         })
 });
 
+//Testing route
 router.route('/users/:email')
     .get(function(req, res) {
         const email = req.params.email
@@ -60,6 +62,7 @@ router.route('/users/:email')
                 res.send({ message: data });
             })
     })
+
 //User's profile route
 router.route('/profile/:page/:user_id')
     .get(function(req, res) {
@@ -99,6 +102,7 @@ router.route('/profile/:page/:user_id')
         // console.log('res', res)
     })
 
+//Login route
 router.route('/login')
     .post(function(req, res) {
         // const email = req.params.email
@@ -113,6 +117,7 @@ router.route('/login')
             })
 })
 
+//Create user 
 router.route('/createuser')
     .post(function(req, res) {
         // const email = req.params.email
