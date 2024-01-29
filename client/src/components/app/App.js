@@ -19,7 +19,7 @@ function App() {
     setCookie("user", user, { path: "/" });
     console.log('logged in!')
   }
-  console.log(cookies.user)
+  console.log('cookie', cookies.user)
   
   //remove cookie on site closing for dev
   useEffect(() => {
@@ -63,7 +63,7 @@ function App() {
           <Route path="/signup" element={<SignUp user={cookies.user} handleLogin={handleLogin} />}></Route>
           <Route path="/profile" element={<Profile user={cookies.user} />}></Route>
           <Route path="/" element={<Landing removeCookie={removeCookie} user={cookies.user} />}></Route>
-          <Route path='*' element={<Navigate to='/' />} />
+          <Route path='*' element={<Navigate to='/' user={cookies.user} />} />
         </Routes>
       </div>
     </Router>
