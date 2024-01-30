@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import './Profile.css';
+import { signal } from "@preact/signals-react";
+
+export const updateProfile = signal();
 
 function Profile({ user }) {
     const navigate = useNavigate();
@@ -14,8 +17,9 @@ function Profile({ user }) {
         //Check if user is logged in
         if (!user) {
             navigate("/login");
+        } else {
+            fetchData('posts', user.id);
         }
-        fetchData('posts', user.id);
     }, [navigate])
 
     async function fetchData(selectedData, id) {
