@@ -4,7 +4,7 @@ import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import './Profile.css';
 import { signal } from "@preact/signals-react";
 
-export const updateProfile = signal();
+export const userData = signal();
 
 function Profile({ user }) {
     const navigate = useNavigate();
