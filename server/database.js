@@ -24,6 +24,7 @@ const connectDb = async () => {
 }
 connectDb()
 
+//Testing function
 async function getAllUsers () {
     const res = await dbParams.query('SELECT * FROM users');
     // console.log(res.rows)
@@ -82,6 +83,15 @@ async function getAllLikesForUser (id) {
 
 async function getAllSavesForUser (id) {
     const res = await dbParams.query(`SELECT * FROM saves WHERE user_id = '${id}'`);
+    // console.log(res.rows)
+    return res.rows;
+}
+
+async function getAllFriendsForUser (id) {
+    const res = await dbParams.query(`SELECT * FROM friends WHERE user_id_1 = '${id}' OR user_id_2 = '${id}'`);
+    //find all friends
+    //select all posts from friends 
+    
     // console.log(res.rows)
     return res.rows;
 }
