@@ -9,8 +9,7 @@ import Landing from '../landing'
 import { CookiesProvider, useCookies } from "react-cookie";
 
 function App() {
-  const [message, setMessage] = useState("");
-  const [email, setEmail] = useState("clara@lighthouse.com");
+  // const [email, setEmail] = useState("clara@lighthouse.com");
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   // const navigate = useNavigate();
 
@@ -35,7 +34,7 @@ function App() {
     };
   }, [removeCookie]);
 
-
+  //User logged in - retrieve posts from friends
   // console.log(message)
   // useEffect(() => {
   //   // axios.get("http://localhost:8000/message")
