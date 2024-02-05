@@ -17,8 +17,8 @@ function Landing(props) {
         //Check if user is logged in
         if (!props.user) {
             navigate("/login");
-        } else {
-
+        } else {    
+            retrievePosts(props.user.id);
         }
     }, [navigate])
 
