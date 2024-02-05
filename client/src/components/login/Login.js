@@ -6,6 +6,7 @@ import './Login.css';
 function Login(props) {
     // const [email, setEmail] = useState("");
     // const [password, setPassword] = useState("");
+    //user.value.email 
     const [user, setUser] = useState({
         email: "",
         password: ""
@@ -25,7 +26,7 @@ function Login(props) {
             ...state,[e.target.name]: e.target.value
         }))
     } 
-    console.log("user", user)
+    // console.log("user", user)
     function handleSubmit(event) {
         event.preventDefault();
         if (user.email.length > 0 && user.password.length > 0) {
@@ -51,14 +52,7 @@ function Login(props) {
                     //   setMessage(state => response.data.message);
                 });
         }
-
     }
-
-
-    //make post request to api with details if values arent null
-    //if email and password match, sent through api confirmation, make cookie with user_id that we can use to access on all pages
-    //redirect to main page
-    //if no user exists with that email -> dont re-direct to signup, want to have sign up or login as options 
 
     //make login and sign up as options if this or that, same stuff but function to post different
 
