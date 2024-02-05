@@ -4,12 +4,21 @@ import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import './Landing.css';
 
 function Landing(props) {
+    const [postData, setPostData] = useState({});
     const navigate = useNavigate();
 
+    async function retrievePosts (id) {
+        const response = await axios.get(`http://localhost:8000/api/login:${id}`)
+        const data = await response.data
+        console.log('data', data)
+        
+    }
     useEffect(() => {
         //Check if user is logged in
         if (!props.user) {
             navigate("/login");
+        } else {
+
         }
     }, [navigate])
 
