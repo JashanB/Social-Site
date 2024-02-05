@@ -53,11 +53,19 @@ function Landing(props) {
             <button onClick={handleLogout}>Logout</button>
             <button onClick={(e) => profileNav(e)}>Profile</button>
             {postData.length > 0 ? (
-                <ul>
-                    {postData.map(function(post){
-
+                <div className='posts'>
+                    {Object.keys(postData).map(function(key){
+                        return (
+                            <PostItem
+                                key={key}
+                                title={postData[key]['title']}
+                                content={postData[key]['content']}
+                                img={postData[key]['img']}
+                                img_small={postData[key]['img_small']}
+                            />
+                        )
                     })}
-                </ul>
+                </div>
             ) : (
                 <div>
                 </div>
