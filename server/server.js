@@ -42,13 +42,13 @@ app.use(cookieSession({
 const router = express.Router();
 
 //Testing route
-router.get('/', function(req, res) {
-    database.getAllUsers()
-        .then(data => {
-            console.log(data)
-            res.json({ message: data });
-        })
-});
+// router.get('/', function(req, res) {
+//     database.getAllUsers()
+//         .then(data => {
+//             console.log(data)
+//             res.json({ message: data });
+//         })
+// });
 
 //Testing route
 router.route('/users/:email')
@@ -166,7 +166,7 @@ router.route('/landing/:user_id')
                 res.status(500).send({error: "Internal server error"})
             })
     })
-    
+
 app.use('/api', router);
 
 // app.get('/message', (req, res) => {
