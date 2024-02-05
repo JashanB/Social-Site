@@ -153,6 +153,20 @@ router.route('/deleteuser')
             })
 })
 
+//Landing page - send posts from friends
+router.route('/landing/:user_id')
+    .get(function(req, res) {
+        const user = req.params.user_id
+        database.getAllPostsFromFriends(user)
+            .then(data => {
+                res.send(data)
+            })
+            .catch((err) => {
+                console.error(err)
+                res.status(500).send({error: "Internal server error"})
+            })
+    })
+    
 app.use('/api', router);
 
 // app.get('/message', (req, res) => {
