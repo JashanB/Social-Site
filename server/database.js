@@ -94,7 +94,7 @@ async function getAllFriendsForUser (id) {
 
 async function getAllPostsFromFriends (id) {
     //for each friend, search all posts
-    const rest = await dbParams.query(`SELECT posts.title, posts.content, posts.img, posts.img_small FROM friends 
+    const res = await dbParams.query(`SELECT posts.title, posts.content, posts.img, posts.img_small FROM friends 
     JOIN posts ON friends.friends_id = posts.user_id WHERE friends.user_id = '${id}';`);
     return res.rows;
 }
