@@ -8,7 +8,7 @@ function Landing(props) {
     const navigate = useNavigate();
 
     async function retrievePosts (id) {
-        const response = await axios.get(`http://localhost:8000/api/login:${id}`)
+        const response = await axios.get(`http://localhost:8000/api/landing/${id}`);
         const data = await response.data
         console.log('data', data)
         
