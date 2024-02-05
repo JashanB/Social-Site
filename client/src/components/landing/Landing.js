@@ -10,7 +10,7 @@ function Landing(props) {
     async function retrievePosts (id) {
         const response = await axios.get(`http://localhost:8000/api/landing/${id}`);
         const data = await response.data
-        console.log('data', data)
+        // console.log('data', data)
         setPostData(state => ({
             ...state, ...data
         }))
@@ -44,7 +44,7 @@ function Landing(props) {
     };
 
     return (
-        <div className={"landing-page"}>
+        <div className="landing-page">
             <button onClick={handleLogout}>Logout</button>
             <button onClick={(e) => profileNav(e)}>Profile</button>
         </div>
