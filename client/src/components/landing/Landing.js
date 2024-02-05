@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import './Landing.css';
+import PostItem from '../postItem/PostItem';
 
 function Landing(props) {
     const [postData, setPostData] = useState({});
     const navigate = useNavigate();
 
-    async function retrievePosts (id) {
+    //api request to get all posts from friends to populate home page
+    async function retrievePosts(id) {
         const response = await axios.get(`http://localhost:8000/api/landing/${id}`);
         const data = await response.data
         // console.log('data', data)
@@ -16,11 +18,14 @@ function Landing(props) {
         }))
     }
     console.log(postData);
+
+    //Redirect user if not logged in
     useEffect(() => {
         //Check if user is logged in
         if (!props.user) {
             navigate("/login");
-        } else {    
+        } else {
+            //load home page data
             retrievePosts(props.user.id);
         }
     }, [navigate])
@@ -47,6 +52,18 @@ function Landing(props) {
         <div className="landing-page">
             <button onClick={handleLogout}>Logout</button>
             <button onClick={(e) => profileNav(e)}>Profile</button>
+            {postData.length > 0 ? (
+                <ul>
+                    {postData.map(function(post){
+
+                    })}
+                </ul>
+            ) : (
+                <div>
+                </div>
+            )
+            }
+
         </div>
     )
 }
