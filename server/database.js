@@ -96,6 +96,10 @@ async function getAllFriendsForUser (id) {
     return res.rows;
 }
 
+async function getAllPostsFromFriends (id) {
+
+}
+
 exports.getAllUsers = getAllUsers;
 exports.createUser = createUser;
 exports.deleteUser = deleteUser;
@@ -105,9 +109,4 @@ exports.searchUsersWithEmail = searchUsersWithEmail;
 exports.getAllPostsForUser = getAllPostsForUser;
 exports.getAllLikesForUser = getAllLikesForUser;
 exports.getAllSavesForUser = getAllSavesForUser;
-
-// getAllUsers();
-
-// function getUserWIthEmail (email) {
-
-// }
+exports.getAllFriendsForUser = getAllFriendsForUser;
