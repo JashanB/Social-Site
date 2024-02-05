@@ -6,6 +6,13 @@ import './Landing.css';
 function Landing(props) {
     const navigate = useNavigate();
 
+    useEffect(() => {
+        //Check if user is logged in
+        if (!props.user) {
+            navigate("/login");
+        }
+    }, [navigate])
+
     //navigate to profile
     function profileNav(event) {
         event.preventDefault();
