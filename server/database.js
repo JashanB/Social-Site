@@ -88,16 +88,13 @@ async function getAllSavesForUser (id) {
 }
 
 async function getAllFriendsForUser (id) {
-    const res = await dbParams.query(`SELECT * FROM friends WHERE user_id_1 = '${id}' OR user_id_2 = '${id}'`);
-    //find all friends
-    //select all posts from friends 
-    
-    // console.log(res.rows)
+    const res = await dbParams.query(`SELECT friends_id FROM friends WHERE user_id = '${id}'`);
     return res.rows;
 }
 
 async function getAllPostsFromFriends (id) {
-
+    //for each friend, search all posts
+    
 }
 
 exports.getAllUsers = getAllUsers;
