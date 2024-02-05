@@ -12,12 +12,11 @@ function Landing(props) {
     async function retrievePosts(id) {
         const response = await axios.get(`http://localhost:8000/api/landing/${id}`);
         const data = await response.data
-        // console.log('data', data)
         setPostData(state => ({
             ...state, ...data
         }))
     }
-    console.log(postData);
+    // console.log(postData);
 
     //Redirect user if not logged in
     useEffect(() => {
@@ -48,6 +47,7 @@ function Landing(props) {
         navigate('/login');
     };
 
+    //create post items
     function createFriendPosts(data) {
         console.log('called')
         const friendPosts = Object.keys(data).map(function (key) {
@@ -65,18 +65,6 @@ function Landing(props) {
         return friendPosts;
     }
 
-    // const friendPosts = Object.keys(postData).map(function(key){
-    //     return (
-    //         <PostItem
-    //             key={key}
-    //             title={postData[key]['title']}
-    //             content={postData[key]['content']}
-    //             img={postData[key]['img']}
-    //             img_small={postData[key]['img_small']}
-    //         />
-    //     )
-    // })
-
     return (
         <div className="landing-page">
             <button onClick={handleLogout}>Logout</button>
@@ -84,8 +72,6 @@ function Landing(props) {
             <div className='posts'>
                 {createFriendPosts(postData)}
             </div>
-
-
         </div>
     )
 }
