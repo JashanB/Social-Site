@@ -11,8 +11,11 @@ function Landing(props) {
         const response = await axios.get(`http://localhost:8000/api/landing/${id}`);
         const data = await response.data
         console.log('data', data)
-        
+        setPostData(state => ({
+            ...state, ...data
+        }))
     }
+    console.log(postData);
     useEffect(() => {
         //Check if user is logged in
         if (!props.user) {
