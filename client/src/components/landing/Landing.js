@@ -48,29 +48,43 @@ function Landing(props) {
         navigate('/login');
     };
 
+    function createFriendPosts(data) {
+        console.log('called')
+        const friendPosts = Object.keys(data).map(function (key) {
+            console.log(data[key]['img'])
+            return (
+                <PostItem
+                    key={key}
+                    title={data[key]['title']}
+                    content={data[key]['content']}
+                    img={data[key]['img']}
+                    img_small={data[key]['img_small']}
+                />
+            )
+        })
+        return friendPosts;
+    }
+
+    // const friendPosts = Object.keys(postData).map(function(key){
+    //     return (
+    //         <PostItem
+    //             key={key}
+    //             title={postData[key]['title']}
+    //             content={postData[key]['content']}
+    //             img={postData[key]['img']}
+    //             img_small={postData[key]['img_small']}
+    //         />
+    //     )
+    // })
+
     return (
         <div className="landing-page">
             <button onClick={handleLogout}>Logout</button>
             <button onClick={(e) => profileNav(e)}>Profile</button>
-            {postData.length > 0 ? (
-                <div className='posts'>
-                    {Object.keys(postData).map(function(key){
-                        return (
-                            <PostItem
-                                key={key}
-                                title={postData[key]['title']}
-                                content={postData[key]['content']}
-                                img={postData[key]['img']}
-                                img_small={postData[key]['img_small']}
-                            />
-                        )
-                    })}
-                </div>
-            ) : (
-                <div>
-                </div>
-            )
-            }
+            <div className='posts'>
+                {createFriendPosts(postData)}
+            </div>
+
 
         </div>
     )
